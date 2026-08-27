@@ -1,0 +1,1654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Raksha Bandhan Sister Challenge ❤️</title>
+
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    min-height:100vh;
+    background:linear-gradient(135deg,#ff5f8f,#ff8fb3,#ffd1dc);
+    color:white;
+    overflow-x:hidden;
+}
+
+.screen{
+    display:none;
+    min-height:100vh;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+}
+
+.screen.active{
+    display:flex;
+}
+
+.card{
+    width:100%;
+    max-width:550px;
+    padding:28px 20px;
+    text-align:center;
+    border-radius:30px;
+    background:rgba(255,255,255,.18);
+    backdrop-filter:blur(15px);
+    box-shadow:0 15px 40px rgba(100,0,40,.25);
+    animation:pop .6s ease;
+}
+
+@keyframes pop{
+    from{
+        opacity:0;
+        transform:scale(.75);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+h1{
+    font-size:34px;
+    margin-bottom:15px;
+}
+
+h2{
+    margin-bottom:15px;
+}
+
+p{
+    font-size:18px;
+    line-height:1.5;
+    margin:10px 0;
+}
+
+button{
+    border:none;
+    border-radius:30px;
+    padding:13px 23px;
+    margin:7px;
+    background:white;
+    color:#e91e63;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+    box-shadow:0 6px 15px rgba(0,0,0,.2);
+    transition:.2s;
+}
+
+button:hover{
+    transform:scale(1.06);
+}
+
+button:active{
+    transform:scale(.94);
+}
+
+.rakhi{
+    font-size:75px;
+    animation:float 2s infinite ease-in-out;
+}
+
+@keyframes float{
+    50%{
+        transform:translateY(-12px) rotate(5deg);
+    }
+}
+
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-bottom:15px;
+}
+
+.badge{
+    padding:9px 13px;
+    background:rgba(255,255,255,.2);
+    border-radius:20px;
+    font-weight:bold;
+}
+
+.gameTitle{
+    font-size:27px;
+    margin:15px 0;
+}
+
+.timer{
+    font-size:20px;
+    margin:10px;
+}
+
+.progress{
+    height:9px;
+    background:rgba(255,255,255,.25);
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.progressBar{
+    height:100%;
+    width:0%;
+    background:white;
+    transition:.4s;
+}
+
+/* TAP GAME */
+
+.tapArea{
+    position:relative;
+    height:330px;
+    margin-top:15px;
+    border-radius:25px;
+    background:rgba(255,255,255,.12);
+    overflow:hidden;
+}
+
+.tapHeart{
+    position:absolute;
+    font-size:38px;
+    cursor:pointer;
+    animation:heartPop .25s ease;
+    user-select:none;
+}
+
+@keyframes heartPop{
+    from{
+        transform:scale(.3);
+    }
+    to{
+        transform:scale(1);
+    }
+}
+
+/* MEMORY GAME */
+
+.memoryGrid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:10px;
+    margin-top:20px;
+}
+
+.memoryCard{
+    height:75px;
+    border-radius:15px;
+    background:white;
+    color:#e91e63;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:32px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.memoryCard.flipped{
+    background:#ffe0ea;
+}
+
+.memoryCard.matched{
+    background:#70e69a;
+}
+
+/* HIDDEN RAKHI */
+
+.hiddenArea{
+    position:relative;
+    height:330px;
+    margin-top:20px;
+    border-radius:25px;
+    background:
+        radial-gradient(circle at 20% 30%,#ffcfdf 5px,transparent 6px),
+        radial-gradient(circle at 70% 60%,#ffd0df 7px,transparent 8px),
+        radial-gradient(circle at 40% 80%,#ffb8cf 5px,transparent 6px),
+        linear-gradient(135deg,#ff91b1,#ffcad8);
+    overflow:hidden;
+}
+
+.hiddenDecoration{
+    position:absolute;
+    font-size:35px;
+    opacity:.8;
+}
+
+.hiddenRakhi{
+    position:absolute;
+    font-size:32px;
+    cursor:pointer;
+    padding:10px;
+}
+
+/* QUIZ */
+
+.question{
+    font-size:22px;
+    font-weight:bold;
+    margin:25px 0;
+}
+
+.answers{
+    display:grid;
+    gap:10px;
+}
+
+.answer{
+    width:100%;
+    margin:0;
+}
+
+.correct{
+    background:#68e89a!important;
+    color:#064d25!important;
+}
+
+.wrong{
+    background:#ff6d6d!important;
+    color:white!important;
+}
+
+.feedback{
+    min-height:28px;
+    margin:12px;
+    font-weight:bold;
+}
+
+/* GIFT */
+
+.giftBox{
+    font-size:100px;
+    animation:gift 1s infinite alternate;
+}
+
+@keyframes gift{
+    from{
+        transform:rotate(-6deg);
+    }
+    to{
+        transform:rotate(6deg) scale(1.08);
+    }
+}
+
+.codeBoxes{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    margin:20px;
+}
+
+.codeBox{
+    width:50px;
+    height:55px;
+    border-radius:12px;
+    border:none;
+    text-align:center;
+    font-size:25px;
+    font-weight:bold;
+    color:#e91e63;
+}
+
+.finalMessage{
+    font-size:21px;
+    line-height:1.7;
+    margin:20px 0;
+}
+
+.bigScore{
+    font-size:50px;
+    font-weight:bold;
+}
+
+#mute{
+    position:fixed;
+    top:12px;
+    right:12px;
+    z-index:100;
+    margin:0;
+    padding:10px 15px;
+    font-size:14px;
+}
+
+/* HEART BACKGROUND */
+
+.backgroundHearts{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:-1;
+}
+
+.bgHeart{
+    position:absolute;
+    bottom:-40px;
+    animation:rise linear forwards;
+}
+
+@keyframes rise{
+    to{
+        transform:translateY(-110vh) rotate(360deg);
+        opacity:0;
+    }
+}
+
+/* CONFETTI */
+
+.confetti{
+    position:fixed;
+    top:-20px;
+    width:9px;
+    height:9px;
+    z-index:999;
+    animation:fall 3s linear forwards;
+}
+
+@keyframes fall{
+    to{
+        transform:translateY(110vh) rotate(720deg);
+    }
+}
+
+.small{
+    font-size:14px;
+    opacity:.8;
+}
+
+@media(max-width:500px){
+
+    h1{
+        font-size:29px;
+    }
+
+    .gameTitle{
+        font-size:23px;
+    }
+
+    .memoryCard{
+        height:65px;
+        font-size:27px;
+    }
+
+    .tapArea,
+    .hiddenArea{
+        height:300px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="backgroundHearts" id="backgroundHearts"></div>
+
+<button id="mute" onclick="toggleSound()">🔊 Sound</button>
+
+
+<!-- ================= START ================= -->
+
+<section class="screen active" id="startScreen">
+
+<div class="card">
+
+<div class="rakhi">🎀</div>
+
+<h1>Ultimate Rakhi Challenge ❤️</h1>
+
+<p>
+Hey Sister! 😎
+</p>
+
+<p>
+I made you a little game for Raksha Bandhan.
+Complete <b>ALL 5 GAMES</b> and unlock your special surprise! 🎁
+</p>
+
+<p>
+Think you're the ultimate sister? 👑
+</p>
+
+<button onclick="startAdventure()">
+❤️ Start Challenge
+</button>
+
+<p class="small">
+Made with love by your annoying brother 😂❤️
+</p>
+
+</div>
+
+</section>
+
+
+<!-- ================= TAP GAME ================= -->
+
+<section class="screen" id="tapScreen">
+
+<div class="card">
+
+<div class="topbar">
+
+<div class="badge">
+🏆 <span id="tapScore">0</span>
+</div>
+
+<div class="badge">
+⏱️ <span id="tapTime">20</span>s
+</div>
+
+</div>
+
+<div class="gameTitle">
+🎯 Game 1: Tap the Hearts
+</div>
+
+<p>
+Tap as many ❤️ as you can!
+</p>
+
+<div class="tapArea" id="tapArea"></div>
+
+<p id="tapResult"></p>
+
+</div>
+
+</section>
+
+
+<!-- ================= MEMORY GAME ================= -->
+
+<section class="screen" id="memoryScreen">
+
+<div class="card">
+
+<div class="topbar">
+
+<div class="badge">
+🏆 Score: <span id="memoryScore">0</span>
+</div>
+
+<div class="badge">
+🧠 Memory
+</div>
+
+</div>
+
+<div class="gameTitle">
+🧠 Game 2: Memory Match
+</div>
+
+<p>
+Find all matching pairs!
+</p>
+
+<div class="memoryGrid" id="memoryGrid"></div>
+
+<p id="memoryResult"></p>
+
+</div>
+
+</section>
+
+
+<!-- ================= HIDDEN RAKHI ================= -->
+
+<section class="screen" id="hiddenScreen">
+
+<div class="card">
+
+<div class="topbar">
+
+<div class="badge">
+🏆 Score: <span id="hiddenScore">0</span>
+</div>
+
+<div class="badge">
+⏱️ <span id="hiddenTime">15</span>s
+</div>
+
+</div>
+
+<div class="gameTitle">
+🕵️ Game 3: Find the Hidden Rakhi
+</div>
+
+<p>
+Find the hidden 🎀 before time runs out!
+</p>
+
+<div class="hiddenArea" id="hiddenArea">
+
+<div class="hiddenDecoration" style="left:10%;top:15%">
+❤️
+</div>
+
+<div class="hiddenDecoration" style="left:75%;top:15%">
+💖
+</div>
+
+<div class="hiddenDecoration" style="left:20%;top:70%">
+🌸
+</div>
+
+<div class="hiddenDecoration" style="left:70%;top:75%">
+💕
+</div>
+
+</div>
+
+<p id="hiddenResult"></p>
+
+</div>
+
+</section>
+
+
+<!-- ================= QUIZ ================= -->
+
+<section class="screen" id="quizScreen">
+
+<div class="card">
+
+<div class="topbar">
+
+<div class="badge">
+🏆 Score: <span id="quizScore">0</span>
+</div>
+
+<div class="badge">
+⭐ Level <span id="quizLevel">1</span>
+</div>
+
+</div>
+
+<div class="progress">
+<div class="progressBar" id="quizProgress"></div>
+</div>
+
+<div class="gameTitle">
+❓ Game 4: Sister Quiz
+</div>
+
+<div class="question" id="quizQuestion"></div>
+
+<div class="answers" id="quizAnswers"></div>
+
+<div class="feedback" id="quizFeedback"></div>
+
+<button id="quizNext" onclick="nextQuiz()" style="display:none">
+Next ➡️
+</button>
+
+</div>
+
+</section>
+
+
+<!-- ================= GIFT ================= -->
+
+<section class="screen" id="giftScreen">
+
+<div class="card">
+
+<div class="giftBox">🎁</div>
+
+<div class="gameTitle">
+🎁 Game 5: Unlock the Gift
+</div>
+
+<p>
+You've reached the final challenge!
+</p>
+
+<p>
+Enter the secret code hidden in the game.
+</p>
+
+<div class="codeBoxes">
+
+<input class="codeBox" maxlength="1" id="c1">
+<input class="codeBox" maxlength="1" id="c2">
+<input class="codeBox" maxlength="1" id="c3">
+<input class="codeBox" maxlength="1" id="c4">
+
+</div>
+
+<button onclick="unlockGift()">
+🔓 Unlock Gift
+</button>
+
+<p id="giftResult"></p>
+
+</div>
+
+</section>
+
+
+<!-- ================= FINAL ================= -->
+
+<section class="screen" id="finalScreen">
+
+<div class="card">
+
+<div class="giftBox">🎉</div>
+
+<h1>You Did It! ❤️</h1>
+
+<p>
+You completed ALL 5 Rakhi Games!
+</p>
+
+<div class="bigScore">
+<span id="finalScore">0</span>
+</div>
+
+<p>
+🏆 Total Score
+</p>
+
+<div class="finalMessage">
+
+You may annoy me...
+
+<br>
+
+You may steal my food...
+
+<br>
+
+You may win every argument...
+
+<br><br>
+
+But you'll always be my
+<b>special sister. ❤️</b>
+
+<br><br>
+
+Happy Raksha Bandhan! 🎀
+
+<br>
+
+Love you forever! 🫶
+
+</div>
+
+<button onclick="createConfetti();playWinSound()">
+🎉 Celebrate
+</button>
+
+<button onclick="restartGame()">
+🔄 Play Again
+</button>
+
+</div>
+
+</section>
+
+
+<script>
+
+/* =====================================================
+   GAME VARIABLES
+===================================================== */
+
+let totalScore = 0;
+
+let soundOn = true;
+
+let audioContext;
+
+let tapScore = 0;
+let tapTime = 20;
+let tapTimer;
+
+let hiddenTime = 15;
+let hiddenTimer;
+
+let memoryFirst = null;
+let memorySecond = null;
+let memoryLock = false;
+let memoryMatches = 0;
+let memoryScore = 0;
+
+let quizIndex = 0;
+let quizScore = 0;
+let quizAnswered = false;
+
+
+/* =====================================================
+   SOUND
+===================================================== */
+
+function initAudio(){
+
+    if(!audioContext){
+
+        audioContext =
+        new (window.AudioContext ||
+        window.webkitAudioContext)();
+
+    }
+
+}
+
+function tone(freq,duration,type="sine"){
+
+    if(!soundOn)return;
+
+    initAudio();
+
+    let osc =
+        audioContext.createOscillator();
+
+    let gain =
+        audioContext.createGain();
+
+    osc.type = type;
+
+    osc.frequency.value = freq;
+
+    gain.gain.setValueAtTime(
+        .12,
+        audioContext.currentTime
+    );
+
+    gain.gain.exponentialRampToValueAtTime(
+        .001,
+        audioContext.currentTime+duration
+    );
+
+    osc.connect(gain);
+
+    gain.connect(audioContext.destination);
+
+    osc.start();
+
+    osc.stop(
+        audioContext.currentTime+duration
+    );
+}
+
+function correctSound(){
+
+    tone(700,.1);
+
+    setTimeout(()=>{
+        tone(900,.15);
+    },100);
+
+}
+
+function wrongSound(){
+
+    tone(220,.25,"sawtooth");
+
+}
+
+function clickSound(){
+
+    tone(500,.06);
+
+}
+
+function playWinSound(){
+
+    tone(600,.12);
+
+    setTimeout(()=>{
+        tone(800,.12);
+    },120);
+
+    setTimeout(()=>{
+        tone(1000,.2);
+    },240);
+
+}
+
+function toggleSound(){
+
+    soundOn=!soundOn;
+
+    document.getElementById("mute").innerText =
+        soundOn ? "🔊 Sound" : "🔇 Muted";
+
+    if(soundOn)clickSound();
+
+}
+
+
+/* =====================================================
+   SCREEN CONTROL
+===================================================== */
+
+function showScreen(id){
+
+    document
+    .querySelectorAll(".screen")
+    .forEach(s=>{
+        s.classList.remove("active");
+    });
+
+    document
+    .getElementById(id)
+    .classList.add("active");
+
+}
+
+
+/* =====================================================
+   START
+===================================================== */
+
+function startAdventure(){
+
+    initAudio();
+
+    clickSound();
+
+    totalScore=0;
+
+    startTapGame();
+
+}
+
+
+/* =====================================================
+   GAME 1 — TAP HEARTS
+===================================================== */
+
+function startTapGame(){
+
+    showScreen("tapScreen");
+
+    tapScore=0;
+
+    tapTime=20;
+
+    document.getElementById("tapScore")
+    .innerText=0;
+
+    document.getElementById("tapTime")
+    .innerText=20;
+
+    document.getElementById("tapResult")
+    .innerText="";
+
+    const area =
+        document.getElementById("tapArea");
+
+    area.innerHTML="";
+
+    clearInterval(tapTimer);
+
+    spawnHeart();
+
+    tapTimer=setInterval(()=>{
+
+        tapTime--;
+
+        document.getElementById("tapTime")
+        .innerText=tapTime;
+
+        if(tapTime<=0){
+
+            clearInterval(tapTimer);
+
+            totalScore += tapScore;
+
+            document.getElementById("tapResult")
+            .innerHTML =
+            "🎉 Great! You tapped <b>"+
+            tapScore+
+            "</b> hearts!<br>"+
+            "<button onclick='startMemoryGame()'>Next Game ➡️</button>";
+
+        }
+
+    },1000);
+
+}
+
+
+function spawnHeart(){
+
+    if(tapTime<=0)return;
+
+    const area =
+        document.getElementById("tapArea");
+
+    const heart =
+        document.createElement("div");
+
+    heart.className="tapHeart";
+
+    heart.innerText=
+        ["❤️","💖","💕","💗","💓"]
+        [Math.floor(Math.random()*5)];
+
+    heart.style.left =
+        Math.random()*85+"%";
+
+    heart.style.top =
+        Math.random()*85+"%";
+
+    heart.onclick=function(){
+
+        tapScore++;
+
+        document.getElementById("tapScore")
+        .innerText=tapScore;
+
+        correctSound();
+
+        heart.remove();
+
+        spawnHeart();
+
+    };
+
+    area.appendChild(heart);
+
+}
+
+
+/* =====================================================
+   GAME 2 — MEMORY
+===================================================== */
+
+function startMemoryGame(){
+
+    showScreen("memoryScreen");
+
+    memoryMatches=0;
+
+    memoryScore=0;
+
+    memoryFirst=null;
+
+    memorySecond=null;
+
+    memoryLock=false;
+
+    document.getElementById("memoryScore")
+    .innerText=0;
+
+    document.getElementById("memoryResult")
+    .innerText="";
+
+    const icons=[
+        "❤️","❤️",
+        "🎀","🎀",
+        "💖","💖",
+        "🌸","🌸",
+        "🫶","🫶",
+        "🎁","🎁",
+        "⭐","⭐",
+        "💕","💕"
+    ];
+
+    icons.sort(()=>Math.random()-.5);
+
+    const grid =
+        document.getElementById("memoryGrid");
+
+    grid.innerHTML="";
+
+    icons.forEach((icon,index)=>{
+
+        const card =
+            document.createElement("div");
+
+        card.className="memoryCard";
+
+        card.innerText="❓";
+
+        card.dataset.icon=icon;
+
+        card.onclick=()=>flipCard(card);
+
+        grid.appendChild(card);
+
+    });
+
+}
+
+
+function flipCard(card){
+
+    if(memoryLock)return;
+
+    if(card.classList.contains("flipped"))return;
+
+    if(card.classList.contains("matched"))return;
+
+    card.classList.add("flipped");
+
+    card.innerText=card.dataset.icon;
+
+    if(!memoryFirst){
+
+        memoryFirst=card;
+
+        return;
+
+    }
+
+    memorySecond=card;
+
+    memoryLock=true;
+
+    if(memoryFirst.dataset.icon ===
+       memorySecond.dataset.icon){
+
+        memoryFirst.classList.add("matched");
+
+        memorySecond.classList.add("matched");
+
+        memoryMatches++;
+
+        memoryScore+=10;
+
+        document.getElementById("memoryScore")
+        .innerText=memoryScore;
+
+        correctSound();
+
+        memoryFirst=null;
+
+        memorySecond=null;
+
+        memoryLock=false;
+
+        if(memoryMatches===8){
+
+            totalScore+=memoryScore;
+
+            document.getElementById("memoryResult")
+            .innerHTML=
+            "🎉 All pairs matched!<br>"+
+            "<button onclick='startHiddenGame()'>Next Game ➡️</button>";
+
+        }
+
+    }else{
+
+        wrongSound();
+
+        setTimeout(()=>{
+
+            memoryFirst.classList.remove("flipped");
+
+            memorySecond.classList.remove("flipped");
+
+            memoryFirst.innerText="❓";
+
+            memorySecond.innerText="❓";
+
+            memoryFirst=null;
+
+            memorySecond=null;
+
+            memoryLock=false;
+
+        },700);
+
+    }
+
+}
+
+
+/* =====================================================
+   GAME 3 — FIND HIDDEN RAKHI
+===================================================== */
+
+function startHiddenGame(){
+
+    showScreen("hiddenScreen");
+
+    hiddenTime=15;
+
+    document.getElementById("hiddenTime")
+    .innerText=hiddenTime;
+
+    document.getElementById("hiddenScore")
+    .innerText=0;
+
+    document.getElementById("hiddenResult")
+    .innerText="";
+
+    const area =
+        document.getElementById("hiddenArea");
+
+    area.querySelectorAll(".hiddenRakhi")
+    .forEach(x=>x.remove());
+
+    const rakhi =
+        document.createElement("div");
+
+    rakhi.className="hiddenRakhi";
+
+    rakhi.innerText="🎀";
+
+    rakhi.style.left =
+        (10+Math.random()*75)+"%";
+
+    rakhi.style.top =
+        (10+Math.random()*75)+"%";
+
+    rakhi.onclick=function(){
+
+        clearInterval(hiddenTimer);
+
+        let points=50+hiddenTime*3;
+
+        document.getElementById("hiddenScore")
+        .innerText=points;
+
+        totalScore+=points;
+
+        correctSound();
+
+        createMiniConfetti();
+
+        document.getElementById("hiddenResult")
+        .innerHTML=
+        "🎉 You found it! +"+points+
+        " points!<br>"+
+        "<button onclick='startQuizGame()'>Next Game ➡️</button>";
+
+        rakhi.remove();
+
+    };
+
+    area.appendChild(rakhi);
+
+    clearInterval(hiddenTimer);
+
+    hiddenTimer=setInterval(()=>{
+
+        hiddenTime--;
+
+        document.getElementById("hiddenTime")
+        .innerText=hiddenTime;
+
+        if(hiddenTime<=0){
+
+            clearInterval(hiddenTimer);
+
+            document.getElementById("hiddenResult")
+            .innerHTML=
+            "⏰ Time's up!<br>"+
+            "<button onclick='startQuizGame()'>Next Game ➡️</button>";
+
+            wrongSound();
+
+        }
+
+    },1000);
+
+}
+
+
+/* =====================================================
+   GAME 4 — QUIZ
+===================================================== */
+
+const quizQuestions=[
+
+{
+    question:"Who is more likely to annoy the other? 😂",
+    answers:[
+        "Brother 😎",
+        "Sister 😇",
+        "Both equally 😂",
+        "Nobody"
+    ],
+    correct:2
+},
+
+{
+    question:"Who usually wins an argument? 😏",
+    answers:[
+        "Brother",
+        "Sister 👑",
+        "Nobody",
+        "It's a tie 😂"
+    ],
+    correct:1
+},
+
+{
+    question:"Who is more likely to steal food? 🍕",
+    answers:[
+        "Brother",
+        "Sister",
+        "Both",
+        "Nobody 😂"
+    ],
+    correct:2
+},
+
+{
+    question:"Complete this: My sister is ______.",
+    answers:[
+        "Amazing ❤️",
+        "Annoying 😂",
+        "Crazy 🤣",
+        "All of the above 😎"
+    ],
+    correct:3
+},
+
+{
+    question:"Who should get the last piece of chocolate? 🍫",
+    answers:[
+        "Brother",
+        "Sister 👑",
+        "Rock-paper-scissors!",
+        "Split it equally ❤️"
+    ],
+    correct:1
+},
+
+{
+    question:"Who is secretly the favorite child? 👀",
+    answers:[
+        "Brother 😎",
+        "Sister 😇",
+        "It's a secret 🤫",
+        "Nobody 😂"
+    ],
+    correct:2
+},
+
+{
+    question:"What is stronger than sibling fights? ❤️",
+    answers:[
+        "Chocolate",
+        "Wi-Fi",
+        "Sibling Bond ❤️",
+        "Nothing"
+    ],
+    correct:2
+},
+
+{
+    question:"What does Raksha Bandhan celebrate? 🎀",
+    answers:[
+        "Only gifts",
+        "Sibling love & bond ❤️",
+        "A holiday",
+        "Chocolate day"
+    ],
+    correct:1
+},
+
+{
+    question:"Who will always have your back? 🫶",
+    answers:[
+        "Your brother/sister ❤️",
+        "Google",
+        "The internet",
+        "Nobody"
+    ],
+    correct:0
+},
+
+{
+    question:"Is your sister the best sister ever? 👑",
+    answers:[
+        "Obviously YES! ❤️",
+        "YESSS! 😭❤️",
+        "100% YES! 👑",
+        "All answers are correct!"
+    ],
+    correct:3
+}
+
+];
+
+
+function startQuizGame(){
+
+    showScreen("quizScreen");
+
+    quizIndex=0;
+
+    quizScore=0;
+
+    loadQuiz();
+
+}
+
+
+function loadQuiz(){
+
+    quizAnswered=false;
+
+    const q =
+        quizQuestions[quizIndex];
+
+    document.getElementById("quizQuestion")
+    .innerText=q.question;
+
+    document.getElementById("quizScore")
+    .innerText=quizScore;
+
+    document.getElementById("quizLevel")
+    .innerText=
+        quizIndex<3 ? 1 :
+        quizIndex<6 ? 2 : 3;
+
+    document.getElementById("quizProgress")
+    .style.width=
+        (quizIndex/quizQuestions.length*100)+"%";
+
+    document.getElementById("quizFeedback")
+    .innerText="";
+
+    document.getElementById("quizNext")
+    .style.display="none";
+
+    const container =
+        document.getElementById("quizAnswers");
+
+    container.innerHTML="";
+
+    q.answers.forEach((answer,index)=>{
+
+        const button =
+            document.createElement("button");
+
+        button.className="answer";
+
+        button.innerText=answer;
+
+        button.onclick=()=>{
+            answerQuiz(index,button);
+        };
+
+        container.appendChild(button);
+
+    });
+
+}
+
+
+function answerQuiz(index,button){
+
+    if(quizAnswered)return;
+
+    quizAnswered=true;
+
+    const q =
+        quizQuestions[quizIndex];
+
+    const buttons =
+        document.querySelectorAll(".answer");
+
+    buttons.forEach(b=>{
+        b.disabled=true;
+    });
+
+    if(index===q.correct){
+
+        button.classList.add("correct");
+
+        quizScore+=15;
+
+        document.getElementById("quizFeedback")
+        .innerText="🎉 Correct! +15";
+
+        correctSound();
+
+    }else{
+
+        button.classList.add("wrong");
+
+        buttons[q.correct]
+        .classList.add("correct");
+
+        document.getElementById("quizFeedback")
+        .innerText="😂 Oops!";
+
+        wrongSound();
+
+    }
+
+    document.getElementById("quizScore")
+    .innerText=quizScore;
+
+    document.getElementById("quizNext")
+    .style.display="inline-block";
+
+}
+
+
+function nextQuiz(){
+
+    quizIndex++;
+
+    if(quizIndex>=quizQuestions.length){
+
+        totalScore+=quizScore;
+
+        startGiftGame();
+
+    }else{
+
+        loadQuiz();
+
+    }
+
+}
+
+
+/* =====================================================
+   GAME 5 — GIFT CODE
+===================================================== */
+
+function startGiftGame(){
+
+    showScreen("giftScreen");
+
+    document.getElementById("giftResult")
+    .innerText="";
+
+    document.getElementById("c1").value="";
+    document.getElementById("c2").value="";
+    document.getElementById("c3").value="";
+    document.getElementById("c4").value="";
+
+}
+
+
+function unlockGift(){
+
+    const code=
+        document.getElementById("c1").value.toUpperCase()+
+        document.getElementById("c2").value.toUpperCase()+
+        document.getElementById("c3").value.toUpperCase()+
+        document.getElementById("c4").value.toUpperCase();
+
+    /*
+       SECRET CODE:
+       RAKI
+    */
+
+    if(code==="RAKI"){
+
+        correctSound();
+
+        totalScore+=100;
+
+        document.getElementById("giftResult")
+        .innerHTML=
+        "🔓 GIFT UNLOCKED! 🎉<br><br>"+
+        "<button onclick='finishGame()'>Open My Surprise ❤️</button>";
+
+        createMiniConfetti();
+
+    }else{
+
+        wrongSound();
+
+        document.getElementById("giftResult")
+        .innerText=
+        "❌ Wrong code! Hint: It's related to Rakhi 🎀";
+
+    }
+
+}
+
+
+/* =====================================================
+   FINAL
+===================================================== */
+
+function finishGame(){
+
+    showScreen("finalScreen");
+
+    document.getElementById("finalScore")
+    .innerText=totalScore;
+
+    createConfetti();
+
+    playWinSound();
+
+}
+
+
+function restartGame(){
+
+    totalScore=0;
+
+    clearInterval(tapTimer);
+
+    clearInterval(hiddenTimer);
+
+    showScreen("startScreen");
+
+}
+
+
+/* =====================================================
+   BACKGROUND HEARTS
+===================================================== */
+
+function startBackgroundHearts(){
+
+    const container =
+        document.getElementById("backgroundHearts");
+
+    setInterval(()=>{
+
+        const heart =
+            document.createElement("div");
+
+        heart.className="bgHeart";
+
+        heart.innerText=
+            ["❤️","💖","💕","💗","🎀"]
+            [Math.floor(Math.random()*5)];
+
+        heart.style.left=
+            Math.random()*100+"%";
+
+        heart.style.fontSize=
+            (15+Math.random()*25)+"px";
+
+        heart.style.animationDuration=
+            (4+Math.random()*5)+"s";
+
+        container.appendChild(heart);
+
+        setTimeout(()=>{
+            heart.remove();
+        },9000);
+
+    },500);
+
+}
+
+startBackgroundHearts();
+
+
+/* =====================================================
+   CONFETTI
+===================================================== */
+
+function createConfetti(){
+
+    for(let i=0;i<120;i++){
+
+        const piece =
+            document.createElement("div");
+
+        piece.className="confetti";
+
+        piece.style.left=
+            Math.random()*100+"vw";
+
+        piece.style.background=
+            ["#ff4081",
+             "#ffd740",
+             "#69f0ae",
+             "#40c4ff",
+             "#ffffff"]
+            [Math.floor(Math.random()*5)];
+
+        piece.style.animationDuration=
+            (2+Math.random()*2)+"s";
+
+        document.body.appendChild(piece);
+
+        setTimeout(()=>{
+            piece.remove();
+        },4500);
+
+    }
+
+}
+
+
+function createMiniConfetti(){
+
+    for(let i=0;i<25;i++){
+
+        const piece =
+            document.createElement("div");
+
+        piece.className="confetti";
+
+        piece.style.left=
+            (40+Math.random()*20)+"vw";
+
+        piece.style.background="#ffffff";
+
+        piece.style.animationDuration="1.5s";
+
+        document.body.appendChild(piece);
+
+        setTimeout(()=>{
+            piece.remove();
+        },2000);
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
